@@ -32,6 +32,7 @@ Each template targets a specific use case where the gap between standard and Soc
 | 8 | [Learning & Concept Exploration](templates/08-learning-concept-exploration.md) | Understanding new concepts deeply through guided questioning |
 | 9 | [Data Analysis & Interpretation](templates/09-data-analysis-interpretation.md) | Analyzing data where biases, methodology, and conclusions need scrutiny |
 | 10 | [Project Planning & Estimation](templates/10-project-planning-estimation.md) | Sprint planning, roadmaps, effort estimation, dependency mapping |
+| 11 | [Migration & Compliance Readiness](templates/11-migration-compliance-readiness.md) | Taking personal/internal projects to public release, app store, or compliance |
 
 ## How to Use
 
