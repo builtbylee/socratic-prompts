@@ -1,12 +1,12 @@
-# Socratic Prompts
+# AI Engineering Prompt Templates
 
-Battle-tested Socratic prompt templates that force AI models to **interrogate problems before solving them**.
+Battle-tested prompt templates for planning, debugging, verification, and execution control with AI coding assistants.
 
-Standard prompts ask for answers. Socratic prompts force the model to surface hidden assumptions, define ambiguous terms, challenge its own reasoning, and earn the right to answer by first demonstrating it understands the question.
+This repo started with Socratic prompts and now includes plan contracts, implementation audit gates, and token-efficiency controls to improve adherence and reduce rework.
 
-## Why Socratic Prompting?
+## Why These Templates?
 
-| Standard Prompt | Socratic Prompt |
+| Standard Prompt | Structured Prompt Template |
 |---|---|
 | Model jumps to an answer | Model interrogates the problem first |
 | Hidden assumptions go unchecked | Assumptions are surfaced and validated |
@@ -18,7 +18,7 @@ Standard prompts ask for answers. Socratic prompts force the model to surface hi
 
 ## The Templates
 
-Each template targets a specific use case where the gap between standard and Socratic prompting is largest.
+Each template targets a specific use case where structured prompting meaningfully improves quality, consistency, or speed.
 
 | # | Template | Best For |
 |---|---|---|
@@ -36,6 +36,7 @@ Each template targets a specific use case where the gap between standard and Soc
 | 12 | [Plan Gate Review](templates/12-plan-gate-review.md) | Reviewing an AI execution plan before implementation starts |
 | 13 | [Implementation Verification Audit](templates/13-implementation-verification-audit.md) | Verifying claimed implementation results with evidence |
 | 14 | [Prompt Adherence & Token Efficiency](templates/14-prompt-adherence-token-efficiency.md) | Improving instruction-following while reducing token waste |
+| 15 | [Plan Contract & Implementation Gate](templates/15-plan-contract-implementation-gate.md) | Forcing PLAN-ONLY contract output before coding starts |
 
 ## How to Use
 
