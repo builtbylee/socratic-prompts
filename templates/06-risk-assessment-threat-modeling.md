@@ -116,3 +116,16 @@ one for each of your top 3 risks. For each:
 - Pre-mortems on high-stakes projects
 - Vendor/dependency risk evaluation
 - Compliance gap analysis
+
+## Hardening Addendum
+
+Append this block at the end of the prompt for high-impact programs:
+
+```
+GLOBAL EXECUTION RULES
+1. Prioritize by impact × likelihood; avoid unranked risk lists.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each risk judgment.
+4. Every critical risk needs one preventive and one detective control.
+5. If risk ownership is unclear, stop and request an accountable owner.
+```

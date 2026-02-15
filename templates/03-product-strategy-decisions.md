@@ -114,3 +114,16 @@ PHASE 4 — DECISION FRAMEWORK
 - Feature prioritization with competing stakeholder interests
 - Pricing decisions where willingness-to-pay is uncertain
 - Partnership or acquisition evaluation
+
+## Hardening Addendum
+
+Append this block at the end of the prompt when decisions affect budget:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not recommend a path before defining decision criteria.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each major conclusion.
+4. Quantify upside/downside and state what would falsify the recommendation.
+5. If constraints conflict, present tradeoffs and wait for direction.
+```

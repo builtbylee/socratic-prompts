@@ -103,3 +103,16 @@ Only after we have identified the root cause with evidence:
 - Cross-system bugs (frontend + backend + database + infra)
 - Performance regressions with unclear origin
 - Bugs where the first fix didn't work and you're going in circles
+
+## Hardening Addendum
+
+Append this block at the end of the prompt when issue severity is high:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not suggest fixes until evidence identifies a likely root cause.
+2. Separate facts, assumptions, and inferences explicitly.
+3. For each hypothesis, state confidence (High/Medium/Low) and why.
+4. Every proposed fix must include a verification test and rollback step.
+5. If logs are insufficient, request specific diagnostics before continuing.
+```

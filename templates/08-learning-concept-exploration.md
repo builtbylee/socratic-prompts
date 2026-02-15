@@ -71,3 +71,16 @@ My current level: [BEGINNER / INTERMEDIATE / ADVANCED]
 - Preparing for technical interviews
 - Understanding business/finance concepts (pricing models, unit economics)
 - Any time you want to UNDERSTAND, not just KNOW
+
+## Hardening Addendum
+
+Append this block at the end of the prompt to avoid shallow explanations:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not use unexplained jargon; define terms before using them.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each major claim.
+4. Include one short check question after each major concept.
+5. If prerequisite knowledge is missing, pause and fill that gap first.
+```

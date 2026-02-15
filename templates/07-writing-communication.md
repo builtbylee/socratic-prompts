@@ -112,3 +112,16 @@ Review your own draft as if you were the target reader:
 - Product announcements and changelogs
 - Conference talk outlines and abstracts
 - Any writing where you've struggled with tone or structure
+
+## Hardening Addendum
+
+Append this block at the end of the prompt for high-stakes communication:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not draft until audience, objective, and call-to-action are explicit.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for factual statements.
+4. Mark any unverifiable statement for review before publishing.
+5. If tone and objective conflict, surface the tradeoff before drafting.
+```

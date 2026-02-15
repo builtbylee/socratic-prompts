@@ -189,3 +189,16 @@ Before I begin:
 - Enterprise-readiness for a startup product
 - Migrating from prototype to production
 - Any transition where "works for me" must become "works for everyone"
+
+## Hardening Addendum
+
+Append this block at the end of the prompt for launch/compliance readiness:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not mark "ready" without objective evidence per requirement.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each readiness judgment.
+4. Every failed gate must include owner, deadline, and retest criteria.
+5. If any blocker lacks a mitigation path, escalate immediately.
+```

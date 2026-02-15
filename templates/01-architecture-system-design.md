@@ -104,3 +104,16 @@ Before finalizing, subject your own design to:
 - Technology selection (framework, cloud provider, database)
 - API design where consumers have different needs
 - Infrastructure decisions with cost/performance tradeoffs
+
+## Hardening Addendum
+
+Append this block at the end of the prompt when decision quality matters:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not skip phases. If required input is missing, stop and ask.
+2. Separate facts, assumptions, and inferences explicitly.
+3. For each major claim, assign confidence (High/Medium/Low) with reason.
+4. For each recommendation, include one verification step with pass/fail criteria.
+5. If constraints conflict, present tradeoffs and wait for direction.
+```

@@ -33,6 +33,9 @@ Each template targets a specific use case where the gap between standard and Soc
 | 9 | [Data Analysis & Interpretation](templates/09-data-analysis-interpretation.md) | Analyzing data where biases, methodology, and conclusions need scrutiny |
 | 10 | [Project Planning & Estimation](templates/10-project-planning-estimation.md) | Sprint planning, roadmaps, effort estimation, dependency mapping |
 | 11 | [Migration & Compliance Readiness](templates/11-migration-compliance-readiness.md) | Taking personal/internal projects to public release, app store, or compliance |
+| 12 | [Plan Gate Review](templates/12-plan-gate-review.md) | Reviewing an AI execution plan before implementation starts |
+| 13 | [Implementation Verification Audit](templates/13-implementation-verification-audit.md) | Verifying claimed implementation results with evidence |
+| 14 | [Prompt Adherence & Token Efficiency](templates/14-prompt-adherence-token-efficiency.md) | Improving instruction-following while reducing token waste |
 
 ## How to Use
 

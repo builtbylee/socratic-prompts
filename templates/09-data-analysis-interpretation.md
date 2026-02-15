@@ -102,3 +102,16 @@ PHASE 4 — ACTIONABLE CONCLUSIONS
 - Market research data interpretation
 - Performance benchmarking (is this improvement real or noise?)
 - Any analysis you'll present to stakeholders or use for decisions
+
+## Hardening Addendum
+
+Append this block at the end of the prompt when data drives decisions:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not infer causality from correlation without explicit evidence.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each finding.
+4. State one alternative explanation for every major result.
+5. Include one validation or backtest step before final recommendations.
+```

@@ -114,3 +114,16 @@ Produce a final synthesis that:
 - Due diligence where you need to know what you DON'T know
 - Academic or technical research where rigor matters
 - Any research you'll make consequential decisions based on
+
+## Hardening Addendum
+
+Append this block at the end of the prompt when citation accuracy is critical:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not state claims without a source or explicit uncertainty label.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each major conclusion.
+4. Flag stale, weak, or conflicting sources and explain impact.
+5. If evidence is insufficient, say so and define exact next research steps.
+```

@@ -123,3 +123,16 @@ Produce the final plan with:
 - Migration planning (database, framework, infrastructure)
 - Launch checklists with hard deadlines
 - Any plan where you've been burned by optimistic estimates before
+
+## Hardening Addendum
+
+Append this block at the end of the prompt for delivery-critical planning:
+
+```
+GLOBAL EXECUTION RULES
+1. Do not estimate before dependencies and ownership are explicit.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each timeline claim.
+4. Include entry/exit criteria for each milestone.
+5. If deadline and scope conflict, present scope-cut options first.
+```

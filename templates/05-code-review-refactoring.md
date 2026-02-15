@@ -106,3 +106,16 @@ Before finalizing your review:
 - Planning large refactors where you need to understand before changing
 - Security-focused code review where you can't afford false negatives
 - Reviewing your own code after time away from it
+
+## Hardening Addendum
+
+Append this block at the end of the prompt for production-critical reviews:
+
+```
+GLOBAL EXECUTION RULES
+1. Distinguish correctness bugs, maintainability issues, and style nits.
+2. Separate facts, assumptions, and inferences explicitly.
+3. Assign confidence (High/Medium/Low) for each finding.
+4. Every high-severity finding must include a repro or concrete failure path.
+5. Do not propose broad refactors without a measurable risk reduction.
+```
