@@ -165,7 +165,10 @@ Give each agent this mandate:
 
 After both agents return, compare their proposals:
 - If they converge on the same approach, that's a strong signal — proceed
-  with it, incorporating the strongest evidence from both.
+  with it, incorporating the strongest evidence from both. However,
+  **identify at least one plausible alternative** they both dismissed and
+  document why it was rejected. This prevents shared blind spots from
+  passing unchallenged into Phase 4.
 - If they diverge, present both to the adversarial agents in Phase 4.
   The divergence itself is valuable — it reveals design dimensions that
   have genuine alternatives.
@@ -176,8 +179,9 @@ Review both outputs for any ASSUMED or INFERRED claims on critical paths.
 
 ## PHASE 4 — PARALLEL ADVERSARIAL INVESTIGATION
 
-Launch four agents simultaneously. Each receives the Architect's proposal
-and the Problem Contract. Each has a specific adversarial mandate.
+Launch four agents simultaneously. Each receives the selected design
+(or both proposals if they diverged — see Phase 3) and the Problem
+Contract. Each has a specific adversarial mandate.
 
 ### Agent 1 — Mechanical Verifier
 
@@ -320,11 +324,13 @@ For each P1 and P2 finding:
    either CONFIRM it (propose a fix) or REBUT it (provide counter-evidence).
 
 2. **Rebuttal rules:**
-   - To dismiss a finding, the rebuttal MUST cite a specific `file:line`
-     that proves the finding is not an issue.
+   - To dismiss a finding, the rebuttal MUST cite grounded evidence:
+     `file:line` for code-based findings, or source URL for platform/API
+     behavior findings.
    - "I believe this is handled by..." is NOT sufficient.
    - "Line 302 of file X handles this by doing Y" IS sufficient.
-   - If the rebuttal cannot produce a code citation, the finding STANDS.
+   - "Official docs at [URL] confirm this behavior" IS sufficient.
+   - If the rebuttal cannot produce a citation (code or URL), the finding STANDS.
 
 3. If a rebuttal introduces new information, route it back to the relevant
    adversarial agent for validation. That agent either accepts the
