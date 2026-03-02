@@ -20,9 +20,14 @@ The user wants to design or review:
 
 > $ARGUMENTS
 
-Follow your active depth mode's phases strictly (see Adaptive Depth).
-Do not skip ahead within that mode. Do not begin implementation until
-all required phases complete and the user approves.
+**Step 0 — Select depth mode.** Before doing anything else, evaluate the
+change against the Adaptive Depth triggers (see end of document). Declare
+**Lite** or **Full** with a one-line justification. This selection governs
+which phases run and cannot be changed mid-workflow without restarting.
+
+Follow your selected depth mode's phases strictly. Do not skip ahead
+within that mode. Do not begin implementation until all required phases
+complete and the user approves.
 
 IMPORTANT: This is a multi-phase workflow. Each phase has explicit completion
 criteria and gates. Do not collapse phases or run them out of order.
