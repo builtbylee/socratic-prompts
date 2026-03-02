@@ -321,7 +321,12 @@ Before proceeding to Phase 5, verify each agent's output is complete:
 
 If any agent's output is missing required fields or categories, rerun
 that agent with its original mandate. If it fails a second time, execute
-that lane in-context using the sequential fallback below.
+that lane in-context using the sequential fallback below. If the output
+is still incomplete after in-context execution, **stop and escalate to
+the user** — report which lane failed, what schema fields are missing,
+and ask whether to proceed with partial coverage (documenting the gap
+as an accepted risk) or abort. Do not silently proceed with incomplete
+investigation.
 
 ### Fallback: no subagent support
 
@@ -573,8 +578,12 @@ Not every change needs the full 7-phase process. Match depth to risk:
 
 **Lite** (1-2 files, JS-only, no cross-boundary):
 - Phase 1 (abbreviated): 3 key assumptions + evidence ratings
-- Phase 4: Run Agent 1 (Mechanical Verifier) only
-- Phase 6 (abbreviated): file list + key changes
+- Phase 4 (Lite scope): Run Agent 1 (Mechanical Verifier) only. The
+  output validation gate applies only to Agent 1's schema (all 5 check
+  categories with PASS/FAIL/WARNING). Agents 2-4 are not required.
+- Phase 6 (Lite scope): File list + key changes + abbreviated
+  Claim→Evidence matrix covering only critical-path claims (full matrix
+  not required, but any critical-path claim must still be VERIFIED+PASS).
 - Skip Phases 2, 3, 5, 7
 
 **Full** (cross-boundary, >2 files, new shared state, high-risk surface):
