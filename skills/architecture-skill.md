@@ -20,8 +20,9 @@ The user wants to design or review:
 
 > $ARGUMENTS
 
-Follow the phases below strictly. Do not skip ahead. Do not begin
-implementation until all phases complete and the user approves.
+Follow your active depth mode's phases strictly (see Adaptive Depth).
+Do not skip ahead within that mode. Do not begin implementation until
+all required phases complete and the user approves.
 
 IMPORTANT: This is a multi-phase workflow. Each phase has explicit completion
 criteria and gates. Do not collapse phases or run them out of order.
@@ -149,10 +150,12 @@ Give each agent this mandate:
 >
 > 1. Core design and rationale
 > 2. File-by-file changes with specific code locations
-> 3. Data flow (especially cross-boundary: JS to native, thread to thread)
+> 3. Data flow across every boundary (client/server, thread/thread,
+>    service/service, JS/native — whichever apply)
 > 4. State lifecycle for every new field: created where, written where
->    (which thread), read where (which thread), reset where, cleaned up where
-> 5. Main tradeoffs (complexity, risk, reversibility, OTA eligibility)
+>    (which thread/process), read where (which thread/process), reset
+>    where, cleaned up where
+> 5. Main tradeoffs (complexity, risk, reversibility, deployment impact)
 > 6. Why this approach over obvious alternatives
 >
 > EVIDENCE RULES — for every claim about the codebase:
@@ -165,23 +168,32 @@ Give each agent this mandate:
 
 After both agents return, compare their proposals:
 - If they converge on the same approach, that's a strong signal — proceed
-  with it, incorporating the strongest evidence from both. However,
-  **identify at least one plausible alternative** they both dismissed and
-  document why it was rejected. This prevents shared blind spots from
-  passing unchallenged into Phase 4.
+  with it, incorporating the strongest evidence from both. However, you
+  MUST **identify at least one plausible alternative** they both dismissed
+  and document why it was rejected. This dismissed-alternative document is
+  a required input to Phase 4 — Agent 2 (Red Team) must stress-test the
+  rejection rationale as part of its failure-mode analysis.
 - If they diverge, present both to the adversarial agents in Phase 4.
   The divergence itself is valuable — it reveals design dimensions that
   have genuine alternatives.
 
 Review both outputs for any ASSUMED or INFERRED claims on critical paths.
 
+**Gate: Present the architect comparison to the user — convergence
+assessment, selected approach (or both divergent proposals), and the
+documented dismissed alternative(s). User must confirm before proceeding.**
+
 ---
 
 ## PHASE 4 — PARALLEL ADVERSARIAL INVESTIGATION
 
 Launch four agents simultaneously. Each receives the selected design
-(or both proposals if they diverged — see Phase 3) and the Problem
-Contract. Each has a specific adversarial mandate.
+and the Problem Contract. Each has a specific adversarial mandate.
+
+**When proposals diverged:** Each adversarial agent must evaluate both
+proposals independently, labeling findings as applying to Proposal A,
+Proposal B, or Both. This produces a comparative finding set that
+informs design selection in Phase 5.
 
 ### Agent 1 — Mechanical Verifier
 
@@ -292,6 +304,25 @@ Contract. Each has a specific adversarial mandate.
 
 **Wait for all four agents to complete before proceeding.**
 
+### Output validation gate
+
+Before proceeding to Phase 5, verify each agent's output is complete:
+
+- **Agent 1**: Must contain all 5 check categories (SIGNATURE, LIFECYCLE,
+  THREAD SAFETY, TYPE BRIDGE, CALL SITE) with PASS/FAIL/WARNING per item
+  and file:line citations.
+- **Agent 2**: Must contain severity-rated findings (P1/P2/P3) each with
+  scenario, file:line, expected vs actual behavior. Zero findings is
+  acceptable only with explicit "no findings" statement per component.
+- **Agent 3**: Must contain CONFIRMED/CONTRADICTED/UNVERIFIABLE per
+  researched item, with source URL for CONFIRMED and CONTRADICTED.
+- **Agent 4**: Must contain PASS/FAIL per constraint with citation, plus
+  affected-functionality list with file:line.
+
+If any agent's output is missing required fields or categories, rerun
+that agent with its original mandate. If it fails a second time, execute
+that lane in-context using the sequential fallback below.
+
 ### Fallback: no subagent support
 
 If the runtime does not support subagents, or agent launches fail, execute
@@ -299,8 +330,8 @@ all four investigation lanes sequentially in-context. Use the exact same
 output schema for each lane (checklist for Agent 1, ranked P1/P2/P3
 findings for Agent 2, CONFIRMED/CONTRADICTED/UNVERIFIABLE for Agent 3,
 PASS/FAIL report for Agent 4). Do not abbreviate or merge lanes — run
-each one independently with its full mandate, then proceed to Phase 5
-as normal.
+each one independently with its full mandate, then apply the output
+validation gate above, then proceed to Phase 5.
 
 ---
 
@@ -340,6 +371,10 @@ For each P1 and P2 finding:
    - A finding is RESOLVED when both sides agree on the evidence
    - A finding is ACCEPTED-RISK when it cannot be fixed but is documented
      with impact analysis and mitigation
+   - **Minimum depth for P1 findings**: At least 2 rounds required — the
+     initial rebuttal plus a validation pass where the original adversarial
+     agent confirms the proposed fix is complete. Single-round agreement
+     on P1 findings is not permitted.
    - Maximum 3 rounds per finding — if unresolved after 3 rounds, it is
      treated as P1 and must be addressed in the implementation
 
@@ -370,7 +405,22 @@ State the chosen design with:
 - Why this approach (grounded in evidence from the adversarial process)
 - Why not the alternatives (specific findings or tradeoffs that eliminated them)
 
-### 6.2 File-by-file implementation plan
+### 6.2 Claim→Evidence matrix
+
+Collect every critical claim from the design into a verification table:
+
+| # | Claim | Rating | Evidence | Status |
+|---|-------|--------|----------|--------|
+
+- **Rating**: VERIFIED / INFERRED / ASSUMED
+- **Evidence**: `file:line` for code claims, source URL for platform/API claims
+- **Status**: PASS (verified true) / FAIL (verified false) / UNVERIFIED
+
+All critical-path claims must be VERIFIED with PASS status before
+implementation proceeds. Any FAIL or UNVERIFIED on a critical path
+is a blocker.
+
+### 6.3 File-by-file implementation plan
 
 For each file:
 - Exact location of changes (line ranges)
@@ -378,26 +428,26 @@ For each file:
 - Every assumption marked VERIFIED with `file:line` citation
 - All resolved findings and their fixes incorporated
 
-### 6.3 State lifecycle tables
+### 6.4 State lifecycle tables
 
 For every new field/variable, the complete lifecycle table from Agent 1,
 updated with any fixes from Phase 5.
 
-### 6.4 Risk register
+### 6.5 Risk register
 
 All accepted risks with:
 - Impact if the risk materializes
 - Mitigation strategy
 - Monitoring/detection method
 
-### 6.5 Rollout plan
+### 6.6 Rollout plan
 
 - Deployment method (what kind of release/deploy is needed)
 - Version or configuration changes required
 - Rollback trigger and rollback steps
 - Verification protocol (specific tests or checks to confirm success)
 
-### 6.6 "What would change this recommendation?"
+### 6.7 "What would change this recommendation?"
 
 Explicitly state what new information or changed constraints would
 invalidate this plan. This helps future reviewers know when to re-evaluate.
@@ -408,14 +458,19 @@ invalidate this plan. This helps future reviewers know when to re-evaluate.
 
 ## PHASE 7 — POST-IMPLEMENTATION VERIFICATION
 
-After code is written (but before commit), re-run Agents 1 and 2 against
-the actual diff:
+After code is written (but before commit), re-run Agents 1, 2, and 4
+against the actual diff:
 
 - Agent 1 (Mechanical Verifier): verify all signatures, lifecycles, and
   type bridges in the actual code, not the plan
 - Agent 2 (Red Team): re-check failure modes against the real implementation
+- Agent 4 (Constraint Auditor): verify the actual diff does not violate
+  any constraint that was PASS in Phase 4
 
 Any new findings must be addressed before committing.
+
+If any new footgun patterns were discovered during the workflow, add them
+to the Known Footgun Registry before completing.
 
 ---
 
